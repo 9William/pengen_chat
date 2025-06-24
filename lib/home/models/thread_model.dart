@@ -1,25 +1,28 @@
 class ThreadModel {
-  final String id;
-  final String title;
-  final int created_at;
-  final String user_id;
-  final int like_count;
+  String? createdAt;
+  String? id;
+  int? likeCount;
+  String? title;
+  String? userId;
 
-  ThreadModel({
-    required this.id,
-    required this.title,
-    required this.user_id,
-    required this.created_at,
-    required this.like_count,
-  });
+ ThreadModel(
+      {this.createdAt, this.id, this.likeCount, this.title, this.userId});
 
-  factory ThreadModel.fromMap(Map<String, dynamic> map) {
-    return ThreadModel(
-      id: map['id'],
-      title: map['title'],
-      user_id: map['user_id'],
-      created_at: map['created_at'],
-      like_count: map['like_count'],
-    );
+ ThreadModel.fromJson(Map<String, dynamic> json) {
+    createdAt = json['created_at'];
+    id = json['id'];
+    likeCount = json['like_count'];
+    title = json['title'];
+    userId = json['user_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['created_at'] = this.createdAt;
+    data['id'] = this.id;
+    data['like_count'] = this.likeCount;
+    data['title'] = this.title;
+    data['user_id'] = this.userId;
+    return data;
   }
 }
